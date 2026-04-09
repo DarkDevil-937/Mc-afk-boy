@@ -12,6 +12,6 @@ jobs:
         uses: Minionguyjpro/Afk-bot@v1.0.3
         with:
           ip: "VengefulBattle.play.hosting"
-          port: 61131
+          port: 1445
           name: "Devil_Bot"
           

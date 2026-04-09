@@ -24,16 +24,27 @@ jobs:
             host: 'VengefulBattle.play.hosting',
             username: 'Devil_Bot',
             version: '1.21.1',
-            // This is the important part:
-            plugins: {
-              chat: false,
-              msg: false
-            }
+            hideErrors: true
           });
 
           bot.on('spawn', () => {
             console.log('Devil_Bot is in and officially deaf to 1.21 chat!');
             bot.physicsEnabled = false;
+          });
+
+          bot.on('error', (err) => {
+            console.log('Bot encountered an error, but staying alive.');
+          });
+
+          bot.on('kicked', (reason) => {
+            console.log('Kicked:', reason);
+          });
+
+          setTimeout(() => { 
+            console.log('Session complete.');
+            process.exit(0); 
+          }, 840000);
+          "
           });
 
           bot.on('error', (err) => console.log('Error:', err));

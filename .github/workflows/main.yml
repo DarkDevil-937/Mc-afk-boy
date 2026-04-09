@@ -24,16 +24,23 @@ jobs:
             host: 'VengefulBattle.play.hosting',
             username: 'Devil_Bot',
             version: '1.21.1',
-            hideErrors: true
+            // This is the important part:
+            plugins: {
+              chat: false,
+              msg: false
+            }
           });
-
-          // This disables the chat system so DiscordSRV can't crash the bot
-          bot.plugins.chat = () => {}; 
 
           bot.on('spawn', () => {
-            console.log('Devil_Bot is in and officially deaf to chat!');
+            console.log('Devil_Bot is in and officially deaf to 1.21 chat!');
             bot.physicsEnabled = false;
           });
+
+          bot.on('error', (err) => console.log('Error:', err));
+          bot.on('kicked', (reason) => console.log('Kicked:', reason));
+
+          setTimeout(() => { process.exit(0); }, 840000);
+          "
 
           bot.on('error', (err) => {
             if (err.message.includes('chat')) return;

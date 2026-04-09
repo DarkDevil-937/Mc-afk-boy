@@ -26,14 +26,21 @@ jobs:
             version: '1.21.1'
           });
 
-          bot.once('spawn', () => {
-            console.log('Devil_Bot is in the world!');
-            // Wait 2 seconds for world to load, then look down to confirm position
+          bot.on('spawn', () => {
+            console.log('Devil_Bot spawned!');
+            // Enable physics and force a small jump to sync position
+            bot.physicsEnabled = true;
             setTimeout(() => {
-              bot.look(0, -1);
-            }, 2000);
+              bot.setControlState('jump', true);
+              setTimeout(() => bot.setControlState('jump', false), 100);
+            }, 1000);
           });
 
+          bot.on('error', (err) => console.log('Error:', err));
+          bot.on('kicked', (reason) => console.log('Kicked:', reason));
+          
+          setTimeout(() => { process.exit(0); }, 840000);
+          "
           bot.on('error', (err) => console.log('Error:', err));
           bot.on('kicked', (reason) => console.log('Kicked for:', reason));
           

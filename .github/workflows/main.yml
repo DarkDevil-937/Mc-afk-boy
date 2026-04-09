@@ -12,10 +12,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Install Mineflayer
         run: npm install mineflayer
-
       - name: Run Bot
         run: |
           node -e "
@@ -26,74 +24,9 @@ jobs:
             version: '1.21.1',
             hideErrors: true
           });
-
           bot.on('spawn', () => {
-            console.log('Devil_Bot is in and officially deaf to 1.21 chat!');
+            console.log('Bot Active');
             bot.physicsEnabled = false;
           });
-
-          bot.on('error', (err) => {
-            console.log('Bot encountered an error, but staying alive.');
-          });
-
-          bot.on('kicked', (reason) => {
-            console.log('Kicked:', reason);
-          });
-
-          setTimeout(() => { 
-            console.log('Session complete.');
-            process.exit(0); 
-          }, 840000);
-          "
-          });
-
-          bot.on('kicked', (reason) => {
-            console.log('Kicked:', reason);
-          });
-
-          setTimeout(() => { 
-            console.log('Session complete.');
-            process.exit(0); 
-          }, 840000);
-          "
-          });
-
-          bot.on('error', (err) => console.log('Error:', err));
-          bot.on('kicked', (reason) => console.log('Kicked:', reason));
-
-          setTimeout(() => { process.exit(0); }, 840000);
-          "
-
-          bot.on('error', (err) => {
-            if (err.message.includes('chat')) return;
-            console.log('Error:', err);
-          });
-          
-          bot.on('kicked', (reason) => console.log('Kicked:', reason));
-
-          setTimeout(() => { process.exit(0); }, 840000);
-          "
-
-          bot.on('kicked', (reason) => console.log('Kicked:', reason));
-          bot.on('error', (err) => {
-            if (err.message.includes('chat')) return; // Ignore chat errors
-            console.log('Error:', err);
-          });
-
-          setTimeout(() => { process.exit(0); }, 840000);
-          "
-          setTimeout(() => { process.exit(0); }, 840000);
-          "
-          });
-
-          bot.on('error', (err) => console.log('Error:', err));
-          bot.on('kicked', (reason) => console.log('Kicked:', reason));
-          
-          setTimeout(() => { process.exit(0); }, 840000);
-          "
-          bot.on('error', (err) => console.log('Error:', err));
-          bot.on('kicked', (reason) => console.log('Kicked for:', reason));
-          
-          // Keep alive for 14 minutes
           setTimeout(() => { process.exit(0); }, 840000);
           "

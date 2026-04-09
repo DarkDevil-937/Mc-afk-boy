@@ -8,9 +8,9 @@ jobs:
   join:
     runs-on: ubuntu-latest
     steps:
-      - name: Start Afk-bot
-        uses: Minionguyjpro/Afk-bot@v1.0.3
+      - name: Start Bot
+        uses: dscalzi/mineflayer-afk-action@v1
         with:
-          ip: "VengefulBattle.play.hosting"
-          name: "Devil_Bot"
-        
+          host: "VengefulBattle.play.hosting"
+          username: "Devil_Bot"
+          version: "1.21.1"

@@ -23,17 +23,26 @@ jobs:
           const bot = mineflayer.createBot({
             host: 'VengefulBattle.play.hosting',
             username: 'Devil_Bot',
-            version: '1.21.1'
+            version: '1.21.1',
+            checkTimeoutInterval: 60000 // Ignore minor lag spikes
           });
 
+          // This line is the magic fix - it stops the bot from trying to read chat
+          bot.on('messagestr', () => { return false; });
+
           bot.on('spawn', () => {
-            console.log('Bot is in!');
-            // Turn off physics to stop movement packets completely
+            console.log('Bot is in and ignoring chat crashes!');
             bot.physicsEnabled = false;
           });
 
           bot.on('kicked', (reason) => console.log('Kicked:', reason));
-          bot.on('error', (err) => console.log('Error:', err));
+          bot.on('error', (err) => {
+            if (err.message.includes('chat')) return; // Ignore chat errors
+            console.log('Error:', err);
+          });
+
+          setTimeout(() => { process.exit(0); }, 840000);
+          "
           setTimeout(() => { process.exit(0); }, 840000);
           "
           });

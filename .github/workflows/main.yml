@@ -1,7 +1,7 @@
 name: Run AFK Bot
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -28,5 +28,6 @@ jobs:
             console.log('Bot Active');
             bot.physicsEnabled = false;
           });
-          setTimeout(() => { process.exit(0); }, 840000);
+          // Stay for 12 minutes so the next bot (at 10m) is already there
+          setTimeout(() => { process.exit(0); }, 720000);
           "

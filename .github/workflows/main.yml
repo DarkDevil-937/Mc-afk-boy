@@ -1,6 +1,16 @@
-name: Start Afk-bot
-uses: Minionguyjpro/Afk-bot@v1.0.3
-with:
-ip: "VengefulBattle.play.hosting"
-name: "Devil_Bot"          
-version: "1.21.1" 
+name: Run AFK Bot
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Afk-bot
+        uses: Minionguyjpro/Afk-bot@v1.0.3
+        with:
+          ip: "VengefulBattle.play.hosting"
+          name: "Devil_Bot"
+          version: "1.21.1"

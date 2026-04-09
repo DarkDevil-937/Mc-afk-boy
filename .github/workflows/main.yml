@@ -27,13 +27,15 @@ jobs:
           });
 
           bot.on('spawn', () => {
-            console.log('Devil_Bot spawned!');
-            // Enable physics and force a small jump to sync position
-            bot.physicsEnabled = true;
-            setTimeout(() => {
-              bot.setControlState('jump', true);
-              setTimeout(() => bot.setControlState('jump', false), 100);
-            }, 1000);
+            console.log('Bot is in!');
+            // Turn off physics to stop movement packets completely
+            bot.physicsEnabled = false;
+          });
+
+          bot.on('kicked', (reason) => console.log('Kicked:', reason));
+          bot.on('error', (err) => console.log('Error:', err));
+          setTimeout(() => { process.exit(0); }, 840000);
+          "
           });
 
           bot.on('error', (err) => console.log('Error:', err));

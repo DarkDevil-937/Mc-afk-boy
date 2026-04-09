@@ -1,7 +1,7 @@
 name: Run AFK Bot
 on:
   schedule:
-    - cron: '*/10000 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
   repository_dispatch:
     types: [keep_alive]
@@ -30,5 +30,5 @@ jobs:
             console.log('Bot Active');
             bot.physicsEnabled = false;
           });
-          setTimeout(() => { process.exit(0); }, 9000000);
+          setTimeout(() => { process.exit(0); }, 900000);
           "

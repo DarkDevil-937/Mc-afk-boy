@@ -5,12 +5,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  join:
+  afk-bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Start Bot
-        uses: dscalzi/mineflayer-afk-action@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          host: "VengefulBattle.play.hosting"
-          username: "Devil_Bot"
-          version: "1.21.1"
+          node-version: '20'
+
+      - name: Install Mineflayer
+        run: npm install mineflayer
+
+      - name: Run Bot
+        run: |
+          node -e "
+          const mineflayer = require('mineflayer');
+          const bot = mineflayer.createBot({
+            host: 'VengefulBattle.play.hosting',
+            username: 'Devil_Bot',
+            version: '1.21.1',
+            hideErrors: true
+          });
+          bot.on('spawn', () => console.log('Devil_Bot spawned in!'));
+          bot.on('error', (err) => console.log('Error:', err));
+          bot.on('kicked', (reason) => console.log('Kicked for:', reason));
+          setTimeout(() => { console.log('Session finished'); process.exit(0); }, 840000);
+          "

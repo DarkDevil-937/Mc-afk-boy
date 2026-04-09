@@ -28,6 +28,7 @@ jobs:
             console.log('Bot Active');
             bot.physicsEnabled = false;
           });
-          // Stay for 12 minutes so the next bot (at 10m) is already there
-          setTimeout(() => { process.exit(0); }, 720000);
+          // Stay for 15 minutes. 
+          // Since a new bot starts every 10 mins, the server is NEVER empty.
+          setTimeout(() => { process.exit(0); z}, 900000);
           "

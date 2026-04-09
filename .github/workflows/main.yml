@@ -1,0 +1,17 @@
+name: Run AFK Bot
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Afk-bot
+        uses: Minionguyjpro/Afk-bot@v1.0.3
+        with:
+          ip: "VengefulBattle.play.hosting"
+          port: 61131
+          name: "Devil_Bot"
+          

@@ -47,6 +47,17 @@ jobs:
           "
           });
 
+          bot.on('kicked', (reason) => {
+            console.log('Kicked:', reason);
+          });
+
+          setTimeout(() => { 
+            console.log('Session complete.');
+            process.exit(0); 
+          }, 840000);
+          "
+          });
+
           bot.on('error', (err) => console.log('Error:', err));
           bot.on('kicked', (reason) => console.log('Kicked:', reason));
 

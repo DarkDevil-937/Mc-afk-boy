@@ -24,16 +24,26 @@ jobs:
             host: 'VengefulBattle.play.hosting',
             username: 'Devil_Bot',
             version: '1.21.1',
-            checkTimeoutInterval: 60000 // Ignore minor lag spikes
+            hideErrors: true
           });
 
-          // This line is the magic fix - it stops the bot from trying to read chat
-          bot.on('messagestr', () => { return false; });
+          // This disables the chat system so DiscordSRV can't crash the bot
+          bot.plugins.chat = () => {}; 
 
           bot.on('spawn', () => {
-            console.log('Bot is in and ignoring chat crashes!');
+            console.log('Devil_Bot is in and officially deaf to chat!');
             bot.physicsEnabled = false;
           });
+
+          bot.on('error', (err) => {
+            if (err.message.includes('chat')) return;
+            console.log('Error:', err);
+          });
+          
+          bot.on('kicked', (reason) => console.log('Kicked:', reason));
+
+          setTimeout(() => { process.exit(0); }, 840000);
+          "
 
           bot.on('kicked', (reason) => console.log('Kicked:', reason));
           bot.on('error', (err) => {

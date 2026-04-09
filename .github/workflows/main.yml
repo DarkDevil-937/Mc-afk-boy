@@ -13,4 +13,4 @@ jobs:
         with:
           ip: "VengefulBattle.play.hosting"
           name: "Devil_Bot"
-          version: "1.21.1"
+        
